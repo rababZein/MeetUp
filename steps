@@ -1,0 +1,65 @@
+____________________Installation steps________________________________________________________
+rvm gemset create forRails
+rvm gemset list
+rvm gemset use forRails
+gem install rails
+____________________________________create first application by rails_________________________________________
+mkdir rails
+cd rails
+rails new myblog -d mysql
+cd myblog
+rake db:create
+bundle install
+-------> if error occured while installing mysql2 (0.3.18)
+sudo apt-get install libmysqlclient-dev
+gem install mysql2
+bundle install
+bundle exec spring binstub --all
+
+*** set database password 
+config->database.yml->set password of database
+
+
+rake db:create
+
+
+http://edgeguides.rubyonrails.org/getting_started.html#the-first-form
+
+
+_______________________________Artical________________________________
+in:config/routes.rb
+Rails.application.routes.draw do
+ 
+  resources :articles
+ 
+  root 'welcome#index'
+
+end
+
+run : bin/rake routes
+
+bin/rails g controller articles
+
+______________________Adding Authentication with Devise________________
+
+rails g devise:install
+http://guides.railsgirls.com/devise/
+
+_____________________botstrap__________________
+  gem 'twitter-bootstrap-rails'  in gemfile
+
+bundle install
+
+rails generate bootstrap:install static
+
+
+________________________active admin __________________
+http://activeadmin.info/docs/0-installation.html
+gem 'activeadmin', '~> 1.0.0.pre1'
+
+
+______________________scaffold_______________
+rails g scaffold article title:string body:text price:integer city:string type:string size:integer image:string user:references 
+
+rake db:migrate
+
